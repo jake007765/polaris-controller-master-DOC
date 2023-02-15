@@ -1,0 +1,46 @@
+.toolbar-placeholder {
+  width: 100%;
+  height: 48px;
+}
+
+.toolbar-wrapper {
+  position: fixed;
+  width: 100%;
+  top: 48px;
+  z-index: 10000;
+}
+.toolbar {
+  background: #eee;
+  height: 44px;
+  width: 100%;
+  padding: 0 5px;
+}
+
+.toolbar button {
+    border: 0;
+    background: none;
+    height: 32px;
+    padding: 2px 12px;
+    margin: 6px 2px;
+    display: inline-block;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.toolbar button:hover {
+  background: #ddd;
+}
+
+.toolbar button.special {
+    background: #107ca2;
+    color: #eee;
+}
+.toolbar button.special:hover {
+  background: #1496c4;
+}
+
+.toolbar p {
+  display: inline-block;
+  font-size: 13px;
+  color: #0f0f0f;
+}

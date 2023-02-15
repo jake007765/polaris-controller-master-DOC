@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+    <title>{{ pageTitle|title }}</title>
+
+    {% include 'luna-theme/segments/head-includes.html' %}
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400&amp;subset=latin-ext" rel="stylesheet">
+    {% include 'luna-theme/segments/analytics.html' %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% if articles|length == 0 and pageNumber > 1 %}
+    <meta http-equiv="refresh" content="0;URL='{{sectionPath}}?page={{pageNumber - 1}}'" />  
+    {% endif %}
+</head>
+<body>
+    {% include 'luna-theme/segments/header.html' %}
+
+    <div id="searchInputContainer" class="hidden">
+        <div class="aligner">
+            <div class="wrapper">
+                <input type="text" placeholder="Search" onblur="hideSearchBox()"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="header-mast container">
+            <div class="header-mast">
+                <h1>{{ pageHeading }}</h1>
+            </div>
+        </div>
+        <div class="contentBox articleGrid4">
+            <br />
+            <div class="articleRow4">
+            {% for article in articles %}
+            <a href="{{urlparse(article['articleLink']).path}}" class="articleThumb">
+                <div class="border-container desktop_only">
+                    <div class="border"></div>
+                </div>
+                <div class="media">
+                    <img src="{{article['imgLink']}}" />
+                </div>
+                <div class="meta">
+                    <div class="section {{article['section_name'].lower()}}">{{article['section_name']}}</div>
+                    <div class="time"></div>
+                </div>
+                <span>
+                    <span class="title">{{article['title']}}</span><br />
+                    <span class="description">{{article['body']}}</span>
+                </span>
+            </a>
+            {% if (loop.index % 3) == 0 %}
+            </div>
+            <div class="articleRow4">
+            {% endif %}
+            {% endfor %}
+            </div>
+
+
+        </div>
+        <div class="center">
+            {% if (pageNumber == 1 and articles|length == 0) %}
+            <p>No results found for that search query. Please try simplifying your search or searching for a keyword instead.</p>
+            {% endif %}
+            <div class="pageSwitcherWrapper">
+                {% if (pageNumber == 1 and articles|length > 0) %}
+                <a class="pageSwitcher selected" href="{{sectionPath}}">
+                    1
+                </a>
+                {% if articles|length >= numberOfArticles %}
+                <a class="pageSwitcher" href="{{sectionPath}}?page=2">
+                    2
+                </a>
+                <a class="pageSwitcher" href="{{sectionPath}}?page=3">
+                    3
+                </a>
+                <a class="pageSwitcher" href="{{sectionPath}}?page=4">
+                    4
+                </a>
+                {% endif %}
+                {% endif %}
+
+                {% if (pageNumber == 2) %}
+                <a class="pageSwitcher" href="{{sectionPath}}">
+                    1
+                </a>
+                <a class="pageSwitcher selected" href="{{sectionPath}}?page=2">
+                    2
+                </a>
+                {% if articles|length >= numberOfArticles %}
+                <a class="pageSwitcher" href="{{sectionPath}}?page=3">
+                    3
+                </a>
+                <a class="pageSwitcher" href="{{sectionPath}}?page=4">
+                    4
+                </a>
+                {% endif %}
+                {% endif %}
+
+                {% if (pageNumber == 3) %}
+                <a class="pageSwitcher" href="{{sectionPath}}">
+                    1
+                </a>
+                <a class="pageSwitcher" href="{{sectionPath}}?page=2">
+                    2
+                </a>
+                <a class="pageSwitcher selected" href="{{sectionPath}}?page=3">
+                    3
+                </a>
+                {% if articles|length >= numberOfArticles %}
+                <a class="pageSwitcher" href="{{sectionPath}}?page=4">
+                    4
+                </a>
+                <a class="pageSwitcher" href="{{sectionPath}}?page=5">
+                    5
+                </a>
+                {% endif %}
+                {% endif %}
+
+                {% if (pageNumber > 3) %}
+                <a class="pageSwitcher" href="{{sectionPath}}?page={{pageNumber - 2}}">
+                    {{pageNumber - 2}}
+                </a>
+                <a class="pageSwitcher" href="{{sectionPath}}?page={{pageNumber - 1}}">
+                    {{pageNumber - 1}}
+                </a>
+                <a class="pageSwitcher selected" href="{{sectionPath}}?page={{pageNumber}}">
+                    {{pageNumber}}
+                </a>
+                {% if articles|length >= numberOfArticles %}
+                <a class="pageSwitcher" href="{{sectionPath}}?page={{pageNumber + 1}}">
+                    {{pageNumber + 1}}
+                </a>
+                <a class="pageSwitcher" href="{{sectionPath}}?page={{pageNumber + 2}}">
+                    {{pageNumber + 2}}
+                </a>
+                {% endif %}
+                {% endif %}
+                <br class="clr" />
+            </div>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    {% include 'luna-theme/segments/footer.html' %}
+</body>
+</html>

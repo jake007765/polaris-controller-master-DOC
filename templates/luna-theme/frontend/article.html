@@ -1,0 +1,290 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Reporter</title>
+    {% include 'luna-theme/segments/head-includes.html' %}
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400&amp;subset=latin-ext" rel="stylesheet">
+    {% include 'luna-theme/segments/analytics.html' %}
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/inline/ckeditor.js"></script>
+</head>
+<body>
+        <header>
+            <div id="header_top">
+                <div class="header_object_wrapper logo">
+                    <a class="logo" href="https://reporter.rit.edu/">
+                        <img src="res/img/main/logo.png" alt="Reporter" height="38px" />
+                    </a>
+                </div>
+                <div class="header_object_wrapper search">
+                    <a class="search trigger" href="https://reporter.rit.edu/">
+                        <img src="res/img/main/search.png" alt="Search" height="36px" />
+                    </a>
+                </div>
+                <div class="header_object_wrapper links">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <svg class="facebook" enable-background="new 0 0 56.693 56.693" width="25" height="25" id="Layer_1" version="1.1" viewBox="0 0 56.693 56.693"
+                                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g transform="translate(0 -3)">
+                                        <path d="M40.43,21.739h-7.645v-5.014c0-1.883,1.248-2.322,2.127-2.322c0.877,0,5.395,0,5.395,0V6.125l-7.43-0.029  c-8.248,0-10.125,6.174-10.125,10.125v5.518h-4.77v8.53h4.77c0,10.947,0,24.137,0,24.137h10.033c0,0,0-13.32,0-24.137h6.77  L40.43,21.739z"
+                                        />
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <svg class="twitter" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"
+                                    height="24" width="24" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+                                    <g transform="translate(-539.18 -536.86)">
+                                        <path d="m633.9 812.04c112.46 0 173.96-93.168 173.96-173.96 0-2.6463-0.0539-5.2806-0.1726-7.903 11.938-8.6302 22.314-19.4 30.498-31.66-10.955 4.8694-22.744 8.1474-35.111 9.6255 12.623-7.5693 22.314-19.543 26.886-33.817-11.813 7.0031-24.895 12.093-38.824 14.841-11.157-11.884-27.041-19.317-44.629-19.317-33.764 0-61.144 27.381-61.144 61.132 0 4.7978 0.5364 9.4646 1.5854 13.941-50.815-2.5569-95.874-26.886-126.03-63.88-5.2508 9.0354-8.2785 19.531-8.2785 30.73 0 21.212 10.794 39.938 27.208 50.893-10.031-0.30992-19.454-3.0635-27.69-7.6468-0.009 0.25652-0.009 0.50661-0.009 0.78077 0 29.61 21.075 54.332 49.051 59.934-5.1376 1.4006-10.543 2.1516-16.122 2.1516-3.9336 0-7.766-0.38716-11.491-1.1026 7.7838 24.293 30.355 41.971 57.115 42.465-20.926 16.402-47.287 26.171-75.937 26.171-4.929 0-9.7983-0.28036-14.584-0.84634 27.059 17.344 59.189 27.464 93.722 27.464"
+                                        />
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <svg class="instagram" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    x="0px" y="0px" width="23px" height="23px" viewBox="0 0 169.063 169.063" style="enable-background:new 0 0 169.063 169.063;"
+                                    xml:space="preserve">
+                                    <g>
+                                        <path d="M122.406,0H46.654C20.929,0,0,20.93,0,46.655v75.752c0,25.726,20.929,46.655,46.654,46.655h75.752
+                                                                       c25.727,0,46.656-20.93,46.656-46.655V46.655C169.063,20.93,148.133,0,122.406,0z M154.063,122.407
+                                                                       c0,17.455-14.201,31.655-31.656,31.655H46.654C29.2,154.063,15,139.862,15,122.407V46.655C15,29.201,29.2,15,46.654,15h75.752
+                                                                       c17.455,0,31.656,14.201,31.656,31.655V122.407z" />
+                                        <path d="M84.531,40.97c-24.021,0-43.563,19.542-43.563,43.563c0,24.02,19.542,43.561,43.563,43.561s43.563-19.541,43.563-43.561
+                                                                       C128.094,60.512,108.552,40.97,84.531,40.97z M84.531,113.093c-15.749,0-28.563-12.812-28.563-28.561
+                                                                       c0-15.75,12.813-28.563,28.563-28.563s28.563,12.813,28.563,28.563C113.094,100.281,100.28,113.093,84.531,113.093z"
+                                        />
+                                        <path d="M129.921,28.251c-2.89,0-5.729,1.17-7.77,3.22c-2.051,2.04-3.23,4.88-3.23,7.78c0,2.891,1.18,5.73,3.23,7.78
+                                                                       c2.04,2.04,4.88,3.22,7.77,3.22c2.9,0,5.73-1.18,7.78-3.22c2.05-2.05,3.22-4.89,3.22-7.78c0-2.9-1.17-5.74-3.22-7.78
+                                                                       C135.661,29.421,132.821,28.251,129.921,28.251z" />
+                                    </g>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+
+                        <li>
+                            <a href="https://www.facebook.com/reportermag">
+                                <svg class="facebook" enable-background="new 0 0 56.693 56.693" width="25" height="25" id="Layer_1" version="1.1" viewBox="0 0 56.693 56.693"
+                                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <g transform="translate(0 -3)">
+                                        <path d="M40.43,21.739h-7.645v-5.014c0-1.883,1.248-2.322,2.127-2.322c0.877,0,5.395,0,5.395,0V6.125l-7.43-0.029  c-8.248,0-10.125,6.174-10.125,10.125v5.518h-4.77v8.53h4.77c0,10.947,0,24.137,0,24.137h10.033c0,0,0-13.32,0-24.137h6.77  L40.43,21.739z"
+                                        />
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/reportermag">
+                                <svg class="twitter" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"
+                                    height="24" width="24" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+                                    <g transform="translate(-539.18 -536.86)">
+                                        <path d="m633.9 812.04c112.46 0 173.96-93.168 173.96-173.96 0-2.6463-0.0539-5.2806-0.1726-7.903 11.938-8.6302 22.314-19.4 30.498-31.66-10.955 4.8694-22.744 8.1474-35.111 9.6255 12.623-7.5693 22.314-19.543 26.886-33.817-11.813 7.0031-24.895 12.093-38.824 14.841-11.157-11.884-27.041-19.317-44.629-19.317-33.764 0-61.144 27.381-61.144 61.132 0 4.7978 0.5364 9.4646 1.5854 13.941-50.815-2.5569-95.874-26.886-126.03-63.88-5.2508 9.0354-8.2785 19.531-8.2785 30.73 0 21.212 10.794 39.938 27.208 50.893-10.031-0.30992-19.454-3.0635-27.69-7.6468-0.009 0.25652-0.009 0.50661-0.009 0.78077 0 29.61 21.075 54.332 49.051 59.934-5.1376 1.4006-10.543 2.1516-16.122 2.1516-3.9336 0-7.766-0.38716-11.491-1.1026 7.7838 24.293 30.355 41.971 57.115 42.465-20.926 16.402-47.287 26.171-75.937 26.171-4.929 0-9.7983-0.28036-14.584-0.84634 27.059 17.344 59.189 27.464 93.722 27.464"
+                                        />
+                                    </g>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/reportermag">
+                                <svg class="instagram" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    x="0px" y="0px" width="23px" height="23px" viewBox="0 0 169.063 169.063" style="enable-background:new 0 0 169.063 169.063;"
+                                    xml:space="preserve">
+                                    <g>
+                                        <path d="M122.406,0H46.654C20.929,0,0,20.93,0,46.655v75.752c0,25.726,20.929,46.655,46.654,46.655h75.752
+                                                                       c25.727,0,46.656-20.93,46.656-46.655V46.655C169.063,20.93,148.133,0,122.406,0z M154.063,122.407
+                                                                       c0,17.455-14.201,31.655-31.656,31.655H46.654C29.2,154.063,15,139.862,15,122.407V46.655C15,29.201,29.2,15,46.654,15h75.752
+                                                                       c17.455,0,31.656,14.201,31.656,31.655V122.407z" />
+                                        <path d="M84.531,40.97c-24.021,0-43.563,19.542-43.563,43.563c0,24.02,19.542,43.561,43.563,43.561s43.563-19.541,43.563-43.561
+                                                                       C128.094,60.512,108.552,40.97,84.531,40.97z M84.531,113.093c-15.749,0-28.563-12.812-28.563-28.561
+                                                                       c0-15.75,12.813-28.563,28.563-28.563s28.563,12.813,28.563,28.563C113.094,100.281,100.28,113.093,84.531,113.093z"
+                                        />
+                                        <path d="M129.921,28.251c-2.89,0-5.729,1.17-7.77,3.22c-2.051,2.04-3.23,4.88-3.23,7.78c0,2.891,1.18,5.73,3.23,7.78
+                                                                       c2.04,2.04,4.88,3.22,7.77,3.22c2.9,0,5.73-1.18,7.78-3.22c2.05-2.05,3.22-4.89,3.22-7.78c0-2.9-1.17-5.74-3.22-7.78
+                                                                       C135.661,29.421,132.821,28.251,129.921,28.251z" />
+                                    </g>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <br class="clr" />
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">News</a>
+                    </li>
+                    <li>
+                        <a href="#">Leisure</a>
+                    </li>
+                    <li>
+                        <a href="#">Features</a>
+                    </li>
+                    <li>
+                        <a href="#">Sports</a>
+                    </li>
+                    <li>
+                        <a href="#">Views</a>
+                    </li>
+                    <li>
+                        <a href="#">Tech</a>
+                    </li>
+                    <li>
+                        <a href="#" class="selected">Op-Ed</a>
+                    </li>
+                    <li>
+                        <a href="#">Media</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+
+    <div class="contentWrapper">
+        <article id="editor">
+            <div class="articleMedia right">
+                <img src="res/img/sample4.jpg" class="mainimg" />
+                <div class="subtext">The audience listens and reacts to the announcement of a <a href="#">historic donation to RIT in Henrietta, N.Y.</a>, Dec. 13, 2017. Photo by Joseph Ressler.</div>
+            </div>
+            <h1>Reporter launches brand new site design!</h1>
+            <hr class="slice" />
+            <address class="byline">
+                <!-- <img src="/author.jpg" alt="Profile picture of USER" /> -->
+                <p><span>by <a href="#">Efe Ozturkoglu</a></span> | <span>photography by <a href="#">Some Dude</a></span> | <span>illustration by <a href="#">Some Chick</a></span> | <span>design by <a href="#">Some Person</a></span></p>
+            </address>
+
+            <p><span class="firstLetter">M</span>embers of the RIT community&mdash;students, faculty, staff, trustees and over 4,000 online viewers gathered in RIT's Student Innovation Hall on Dec. 13 to hear RIT president David Munson announce historic news for the university.</p>
+
+            <div class="articleMedia right">
+                <img src="res/img/sample1.png" class="mainimg" />
+                <div class="subtext">The audience listens and reacts to the announcement of a historic donation to RIT in Henrietta, N.Y., Dec. 13, 2017.</div>
+            </div>
+
+            <p>The announcement was that <a href="http://facebook.com">RIT alum Austin McChord</a>, founder and CEO of Datto Inc. donated $50 million to RIT. This was the largest donation ever made to the university and one of the largest ever donations to an institution of higher education in the Rochester region.</p>
+
+            <h2>I am a mighty subheading</h2>
+
+            <p>The gift is designated for two major areas. $30 million is delegated to foster creativity and entrepreneurship at RIT, including $17.5 million to launch a maker space and innovative learning complex. This new building will connect the Wallace Center and the Student Alumni Union, which will also receive renovations as part of this project.</p>
+
+            <div class="articleMedia left">
+                <img src="res/img/sample2.jpg" class="mainimg" />
+                <div class="subtext">The audience listens and reacts to the announcement</div>
+            </div>
+
+            <h2>This is another one</h2>
+
+            <p>Additional funding will go towards endowing faculty positions as well as creating student scholarships, including new entrepreneurial gap year fellowships to allow students to advance their concepts in the businesses. 50 students over five years are anticipated to benefit from these scholarships.<p>
+
+            <p>"This donation will help propel RIT from excellence to preeminence.  We are so grateful to you, Austin, for helping us to usher RIT into its next era of greatness,” added Munson.</p>
+
+        <div class="pullquote left">
+            <div class="text">
+                    &ldquo;propel RIT from excellence to preeminence. We are so grateful to you, Austin&rdquo;
+            </div>
+        </div>
+
+            <p>The donation had been years in the making, starting with Destler opening dialogue with the then-recent alum a few years ago, discussing how he could give back to his alma mater.</p>
+
+            <p>“When he asked me about potentially making a very large gift to RIT... [Destler] had sat me down in his office and said to me, ‘What are you gonna do with all this money?’” recalled McChord.</p>
+
+            <p>"And so he [Destler] worked out a math formula and said you should give this percentage to the university and I said alright I don’t want to be out of turn here but ... let’s cap it at 50. He looked a little disappointed,” McChord continued, laughing.</p>
+
+            <p>McChord also sat on Destler’s President’s Roundtable, and became a member of the RIT Board of Trustees in 2016.</p>
+
+            <p>McChord has been very involved in RIT since graduation. He has often returned for special events, spoke at entrepreneurship conferences, recruited at the career fair and even spoke at the commencement address in May 2017.</p>
+
+            <p>He was also named to Forbes’ “30 Under 30” list in 2015 and won the Ernst & Young “Entrepreneur of the Year New York” award in 2016.</p>
+
+            <p>He also used to write for Reporter.​ In the spring of 2005, McChord was a prolific news writer who covered everything from controversial guest speakers to conferences for the magazine.  </p>
+
+            <p>McChord recalled that he was not the best student at RIT, and actually left RIT before he earned his degree, transferring credits from community college to complete it in 2009. In making this donation, he really wanted to give back to the people and places that helped him along the way, and helped him with his idea to create Datto.</p>
+
+            <p>"Honestly up until this moment and walking down from the elevator I had no idea this was gonna be such a big deal ... but honestly I am incredibly proud to have the opportunity to make a gift like this,” he concluded, thanking his employees and customers for making this all possible.</p>
+
+            <p>"The goal [of these new initiatives] of course is to spawn the next generation of Austin McChords, and get their ideas and creations out into the world,” said Munson.</p>
+
+            <p>During the commencement speech McChord gave, he suggested he initially wanted to sell his company and make enough money to buy an Audi R8, the same car Iron Man drove.</p>
+
+            <p>The gathering concluded with Munson presenting a gift to McChord, a mini Audi R8 decorated with tiger stripes. “This does of course make you [McChord] RIT’s Iron Man,”
+                Munson said before concluding the event.<img class="articleEnd" ondragstart="return false;" src="res/img/main/articleend.png"></p>
+
+        </article>
+    </div>
+    <script>
+        InlineEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+
+
+    <footer>
+        <div class="wrapper">
+            <div class="bigR">
+                <img src="res/img/main/bigr.png" height="100%" />
+            </div>
+            <div class="about">
+                <div class="title">About Us</div>
+                <div class="content">&copy; 2017 Reporter Magazine. All Rights Reserved.</div>
+                <div class="content">Reporter Magazine is a student-run publication of the Rochester Institute of Technology.</div>
+                <div class="content">
+                    <a href="/about/">Learn more</a>
+                </div>
+            </div>
+            <div class="address">
+                <div class="title">Address</div>
+                <div class="content">37 Lomb Memorial Drive
+                    <br/> Rochester, New York 14623</div>
+                <div class="content">Campus Life Center | A-730</div>
+                <div class="content">Tel:
+                    <a href="tel:+15854752213">(585) 475-2213</a>
+                </div>
+            </div>
+            <div class="people">
+                <div class="title">People</div>
+                <div class="content">
+                    <a href="/people/">Our Staff</a>
+                </div>
+                <div class="content">
+                    <a href="/join-us/">Join Our Team</a>
+                </div>
+                <div class="content">
+                    <a href="/office-hours/">Office Hours</a>
+                </div>
+                <div class="content">
+                    <a href="https://reporter.rit.edu/user/">Login to Account</a>
+                </div>
+            </div>
+            <div class="other">
+                <div class="title">Other</div>
+                <div class="content">
+                    <a href="/advertise-reporter/">Advertise</a>
+                </div>
+                <div class="content">
+                    <a href="/distorter/">Distorter</a>
+                </div>
+                <div class="content">
+                    <a href="/magazine-locations/">Magazine Map</a>
+                </div>
+                <!-- TODO: is this a dynamic link? -->
+                <div class="content">
+                    <a href="/tipline/index.php/851887/">Anonymous Tip</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

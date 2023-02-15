@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard | Reporter Podcasts</title>
+  <link rel="stylesheet" href="/static/admin/res/css/main.css">
+  <link rel="stylesheet" href="/static/admin/res/css/master-nav.css">
+  <link rel="stylesheet" href="/static/admin/res/css/toolbar.css">
+  <link rel="stylesheet" href="/static/admin/res/css/article.css">
+</head>
+<body>
+  <div class="master-nav-placeholder"></div>
+  <div class="master-nav-wrapper">
+    <div class="master-nav">
+      <div class="left">
+        <button>Menuuuu</button>
+      </div>
+      <div class="center">
+        <p>Dashboard | Reporter Podcasts</p>
+      </div>
+      <div class="right">
+        <button class="notifications"/><button class="profile"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="master-sidebar-wrapper">
+    <div class="master-sidebar">
+      <div>
+        <button>MENU</button>
+      </div>
+      <h2>Reporter</h2>
+      <div class="portal-links">
+        <a class="portal-link"><img /> Articles</a>
+        <a class="portal-link"><img /> Podcasts</a>
+        <a class="portal-link"><img /> Ads</a>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="toolbar-placeholder"></div>
+  <div class="toolbar-wrapper">
+    <div class="toolbar">
+      <button class="special">New Episode</button>
+    </div>
+  </div>
+
+  <div class="contentWrapper">
+    <h1>Podcast Episodes</h1>
+    <table>
+      <thead>
+        <td>Szn</td>
+        <td>#</td>
+        <td>Title</td>
+        <td>Duration</td>
+        <td>Summary</td>
+      </thead>
+      {% for podcast in podcasts %}
+        <tr><td>{{ podcast['season'] }}</td><td>{{ podcast['episode'] }}</td><td><a href="/admin/podcasts/{{ podcast['id'] }}/edit">{{ podcast['title'] }}</a><td>{{ podcast['itunesDuration'] }}</td><td>{{ podcast['itunesSummary'] }}</td></tr>
+      {% endfor %}
+    </table>
+
+  </div>
+</body>
+</html>

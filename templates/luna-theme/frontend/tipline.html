@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <title>Tipline</title>
+    {% include 'luna-theme/segments/head-includes.html' %}
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400&amp;subset=latin-ext" rel="stylesheet">
+    {% include 'luna-theme/segments/analytics.html' %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+        {% include 'luna-theme/segments/header.html' %}
+
+
+    <div class="header-mast container">
+        <div class="header-mast">
+            <h1>Anonymous Tipline</h1>
+        </div>
+    </div>
+    <div class="contentWrapper">
+        <article>
+
+            <h1>Want to tell us something anonymously?</h1>
+            <p>Use our Tor hidden service.</p>
+            <p>This service is only accessible via the <a href="https://torproject.org/download/">Tor Browser</a>, in order to protect your privacy. Please install Tor and access our Tor hidden service below.</p>
+            <p><a class="button" href="http://c7a4d3dmbdlaflfmay4xdvppntzyacsmqppyf6ccqfvnscsuqersq4yd.onion" >Connect Via Tor</a></p>
+
+
+            <h2>Things you should know:</h2>
+            <ul>
+                <li>We do not keep logs.</li>
+                <li>You must be using the Tor browser to access this site.</li>
+                <li>Publication of anonymous submissions are at the discretion of the Editor-in-Chief.</li>
+                <li>We have no technical capability of revealing sources and are protected by NY State Law. Don't ask.</li>
+            </ul>
+
+        </article>
+    </div>
+
+
+    {% include 'luna-theme/segments/footer.html' %}
+</body>
+</html>

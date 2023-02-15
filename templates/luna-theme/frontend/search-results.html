@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+    <title>{{ pageTitle|title }}</title>
+    {% include 'luna-theme/segments/head-includes.html' %}
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400&amp;subset=latin-ext" rel="stylesheet">
+    {% include 'luna-theme/segments/analytics.html' %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    {% include 'luna-theme/segments/header.html' %}
+
+    <div id="searchInputContainer" class="hidden">
+        <div class="aligner">
+            <div class="wrapper">
+                <input type="text" placeholder="Search" onblur="hideSearchBox()"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="header-mast container">
+            <div class="header-mast">
+                <h1>{{ pageHeading }}</h1>
+            </div>
+        </div>
+        <div class="contentBox articleGrid4">
+            <br />
+            <div class="articleRow4">
+            {% for article in articles %}
+            <a href="{{urlparse(article['articleLink']).path}}" class="articleThumb">
+                <div class="media">
+                    <img src="{{article['imgLink']}}" />
+                </div>
+                <div class="meta">
+                    <div class="section {{article['section_name'].lower()}}">{{article['section_name']}}</div>
+                    <div class="time">7 days</div>
+                </div>
+                <span>{{article['title']}}</span>
+            </a>
+            {% if (loop.index % 3) == 0 %}
+            </div>
+            <div class="articleRow4">
+            {% endif %}
+            {% endfor %}
+            </div>
+
+
+        </div>
+        <div class="center">
+            <div class="pageSwitcherWrapper">
+                <a class="pageSwitcher selected" href="{{sectionPath}}">
+                    1
+                </a>
+                <a class="pageSwitcher" href="{{sectionPath}}?page=2">
+                    2
+                </a>
+                <a class="pageSwitcher" href="{{sectionPath}}?page=3">
+                    3
+                </a>
+                <a class="pageSwitcher" href="{{sectionPath}}?page=4">
+                    4
+                </a>
+                <br class="clr" />
+            </div>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    {% include 'luna-theme/segments/footer.html' %}
+</body>
+</html>

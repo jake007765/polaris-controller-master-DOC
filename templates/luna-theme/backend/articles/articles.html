@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>All Articles | Reporter Articles</title>
+  <link rel="stylesheet" href="/static/admin/res/css/main.css">
+  <link rel="stylesheet" href="/static/admin/res/css/master-nav.css">
+  <link rel="stylesheet" href="/static/admin/res/css/toolbar.css">
+  <link rel="stylesheet" href="/static/admin/res/css/article.css">
+</head>
+<body>
+  <div class="master-nav-placeholder"></div>
+  <div class="master-nav-wrapper">
+    <div class="master-nav">
+      <div class="left">
+        <button>Menuuuu</button>
+      </div>
+      <div class="center">
+        <p>All Articles | Reporter Articles</p>
+      </div>
+      <div class="right">
+        <button class="notifications"/><button class="profile"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="master-sidebar-wrapper">
+    <div class="master-sidebar">
+      <div>
+        <button>MENU</button>
+      </div>
+      <h2>Reporter</h2>
+      <div class="portal-links">
+        <a class="portal-link"><img /> Articles</a>
+        <a class="portal-link"><img /> Podcasts</a>
+        <a class="portal-link"><img /> Ads</a>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="toolbar-placeholder"></div>
+  <div class="toolbar-wrapper">
+    <div class="toolbar">
+      <button class="special">New Article</button>
+    </div>
+  </div>
+
+  <div class="contentWrapper">
+    
+    <h1>My Recent Articles</h1>
+    <table>
+      <thead>
+        <td>Title</td>
+        <td>Created</td>
+      </thead>
+      {% for article in my_articles %}
+        <tr><td><a href="/admin/articles/{{ article['id'] }}/edit">{{ article['title'] }}</a></td><td>{{ article['created_at'] }}</td></tr>
+      {% endfor %}
+    </table>
+
+    <h1>All Articles</h1>
+    <table>
+      <thead>
+        <td>Title</td>
+        <td>Author</td>
+        <td>Section</td>
+        <td>Last Updated</td>
+        <td>Moderation State</td>
+        <td>Last Revisor</td>
+        <td>Edit</td>
+        <td>Delete</td>
+      </thead>
+      {% for article in articles %}
+        <tr><td><a href="/admin/articles/{{ article['id'] }}/edit">{{ article['title'] }}</a><td>{{ article['authorDisplay'] }}</td><td>{{ article['section'] }}</td></td><td>{{ article['created_at'] }}</td></tr>
+      {% endfor %}
+    </table>
+
+  </div>
+</body>
+</html>

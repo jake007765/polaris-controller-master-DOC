@@ -1,0 +1,288 @@
+<!doctype html>
+<html>
+<head>
+    <title>Office Hours</title>
+    {% include 'luna-theme/segments/head-includes.html' %}
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400&amp;subset=latin-ext" rel="stylesheet">
+    {% include 'luna-theme/segments/analytics.html' %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    {% include 'luna-theme/segments/header.html' %}
+
+    <div class="header-mast container">
+        <div class="header-mast">
+            <h1>Office Hours</h1>
+        </div>
+    </div>
+    <div class="contentWrapper">
+        <article>
+            <p>Our General Meetings are held on Fridays in our office, A-730, of the Campus Life Center from 5pm-6pm. If you are unable to attend in person, please use the zoom link here:</p>
+            <p><a class="button" href="https://rit.zoom.us/j/94952024385">General Meeting</a></p>
+            <p>Below is a list of times someone is guaranteed to be in the virtual office. Come visit us!</p>
+
+
+
+<div id="schedule">
+    <table style="width: 100%; table-layout: fixed;">
+        <thead>
+            <tr>
+                <td style="width: 50px;"></td>
+                <td>Monday</td>
+                <td>Tuesday</td>
+                <td>Wednesday</td>
+                <td>Thursday</td>
+                <td>Friday</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="stripe">
+                <td class="date">9am</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="date">10am</td>
+                <td></td>
+                <td>Cayla K</td>
+                <td></td>
+                <td>Cayla K</td>
+                <td></td>
+            </tr>
+            <tr class="stripe">
+                <td class="date">11am</td>
+                <td>Monica N</td>
+                <td></td>
+                <td>Victoria S<br>Ali J</td>
+                <td></td>
+                <td>Ali J</td>
+            </tr>
+            <tr>
+                <td class="date">12pm</td>
+                <td>Anika T<br>Tyler</td>
+                <td>Kevin Z</td>
+                <td>Anika T<br>Victoria S<br>Tyler </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="stripe">
+                <td class="date">1pm</td>
+                <td>Karina L</td>
+                <td></td>
+                <td>Karina L</td>
+                <td>Efe O</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="date">2pm</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Mike </td>
+                <td>Mike </td>
+            </tr>
+            <tr class="stripe">
+                <td class="date">3pm</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="date">4pm</td>
+                <td></td>
+                <td>Kasey M</td>
+                <td></td>
+                <td></td>
+                <td>Alyssa M</td>
+            </tr>
+            <tr class="stripe">
+                <td class="date">5pm</td>
+                <td></td>
+                <td></td>
+                <td>Kasey M</td>
+                <td></td>
+                <td>General Meeting</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+            <table class="officeHours" style="display: none !important">
+                <thead>
+                        <tr>
+                            <td>Monday</td>
+                            <td>Tuesday</td>
+                            <td>Wednesday</td>
+                            <td>Thursday</td>
+                            <td>Friday</td>
+                        </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td>Hello</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                </tbody>
+            </table>
+
+            <script>
+                var hours = ['9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm'];
+                var days = ['Monday','Tuesday','Wednesday','Thursday','Friday'];
+                
+                var schedule = JSON.parse('[[[],[],[],["Anika T","Sandy W"],[],[],["Frankie J","Ramya S","Tyler "],["Frankie J","Ramya S","Efe O","Adam B"],["Adam B"]],[["Monica N"],[],[],["Kevin Z","Karina L","Ali J"],["Ali J"],["Kasey M"],[],[],[]],[[],["Jess S"],[],["Will D"],["Will D"],[],["Tyler "],["Adam B"],["Adam B"]],[[],[],["Kevin Z"],["Monica N"],["Efe O","Victoria S"],["Kasey M","Mike "],["Jess S"],["Karina L","Jess S"],[]],[[],[],[],["Sandy W"],[],["Mike ","Trisha A"],["Alyssa M","Trisha A"],["Alyssa M"],["General Meeting"]]]');
+                var type = isMobile();
+                var div = document.getElementById('schedule');
+                
+                function generateTable() {
+                    div.innerHTML = "";
+                    var numTable = (type == 0 ? 1 : days.length);
+                    
+                    for(var t = 0; t < numTable; t++) {
+                        var table = document.createElement("table");
+                        table.style.tableLayout="fixed";
+                        
+                        var head = document.createElement("thead");
+                        table.appendChild(head);
+                        var body = document.createElement("tbody");
+                        table.appendChild(body);
+                        
+                        var hrow = document.createElement("tr");
+                        head.appendChild(hrow);
+                        
+                        var spacer = document.createElement("td");
+                        spacer.style.width = "50px";
+                        hrow.appendChild(spacer);
+                        
+                        if(type == 1) {
+                            addColumn(days[t], hrow);
+                        } else {
+                        
+                            for(var d = 0; d < days.length; d++) {
+                                addColumn(days[d], hrow);
+                            }
+                        }
+                
+                        for(var h = 0; h < hours.length; h++) {
+                            var brow = document.createElement("tr");
+                            body.appendChild(brow);
+                            if(h % 2 == 0) brow.className = "stripe";
+                            
+                            var hour = document.createElement("td");
+                            hour.className = "date";
+                            hour.innerHTML = hours[h];
+                            brow.appendChild(hour);
+                            
+                            if(type == 1) {
+                                addColumn(schedule[t][h].join("<br>"), brow);
+                            } else {
+                                for(var s = 0; s < schedule.length; s++) {
+                                    if(!schedule[s][h]) schedule[s][h] = "";
+                                    addColumn(schedule[s][h].join("<br>"), brow);
+                                }
+                            }
+                        }
+                        
+                        div.appendChild(table);
+                        div.appendChild(document.createElement('br'));
+                    }
+                }
+                
+                function addColumn(text, element) {
+                    var item = document.createElement("td");
+                    item.innerHTML = text;
+                    element.appendChild(item);
+                    return item;
+                }
+                
+                function isMobile() {
+                    if(window.innerWidth > 1053) return 0;
+                    else return 1;
+                }
+                
+                generateTable();
+                
+                window.onresize = function(event) {
+                    if(isMobile() != type) {
+                        type = isMobile();
+                        generateTable();
+                    }
+                };
+                
+                </script>
+                <br />
+                <br />
+        </article>
+    </div>
+
+
+    {% include 'luna-theme/segments/footer.html' %}
+</body>
+</html>

@@ -1,0 +1,771 @@
+<!doctype html>
+<html>
+<head>
+    <title>Reporter</title>
+    {% include 'luna-theme/segments/head-includes.html' %}
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400&amp;subset=latin-ext" rel="stylesheet">
+    {% include 'luna-theme/segments/analytics.html' %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+    <script src="/static/res/js/ui.js"></script>
+</head>
+<body>
+    {% include 'luna-theme/segments/header.html' %}
+
+    <div class="content">
+        <div class="podcastWrapper">
+            <!-- Podcast code -->
+
+            <style>
+                body.mobile {
+                    background: #fff;
+                }
+
+                .podcastWrapper {
+                    width: 1053px;
+                    margin: auto;
+                    margin-top: 40px;
+                    margin-bottom: 40px;
+                }
+
+                #podcastContainer {
+                    width: 717px;
+                    /* background: #fff; */
+                    /* padding: 15px; */
+                    /* border: 1px solid; */
+                    /* border-color: #e8e8e8 #e3e3e3 #d8d8d8; */
+                    display: block;
+                    float: left;
+                }
+
+                img#album {
+                    width: 130px;
+                    height: 130px;
+                    display: block;
+                    float: left;
+                    overflow: hidden;
+                    box-shadow: 0 6px 12px #c5c5c5;
+                }
+
+                #podcastTop {
+                    max-width: 615px;
+                    float: left;
+                }
+
+                .title {
+                    font-family: "DIN Condensed Black", sans-serif;
+                    font-size: 42px;
+                    ccfloat: left;
+                    font-weight: 300;
+                    margin: 0 10px;
+                    text-transform: none;
+                }
+
+                .label {
+                    font-family: "DIN Condensed Black", sans-serif;
+                    font-size: 16px;
+                    text-transform: uppercase;
+                    font-weight: 300;
+                    margin: 0 10px;
+                    letter-spacing: 1px;
+                    color: #33A6E3;
+                }
+
+                #podcastTop>* {
+                    margin-left: 25px;
+                }
+
+                a.podcast {
+                    display: inline-block;
+                    margin: 0 10px;
+                    font-family: "Calibri Light", "Source Sans Pro", "Helvetica", sans-serif;
+                    color: #33A6E3;
+                }
+
+                #podcastControls {
+                    width: 715px;
+                    height: 60px;
+                    cbackground: #eee;
+                    ccfloat: left;
+                    margin-top: -18px;
+                }
+
+                #podcastButtons {
+                    cbackground: #ddd;
+                    margin: auto;
+                    width: 300px;
+                    height: 60px;
+                }
+
+                #podcastButtons a {
+                    height: 30px;
+                    width: 30px;
+                    ccbackground: #f00;
+                    display: block;
+                    float: left;
+                    margin: 0 10px;
+                    border-radius: 100%;
+                    background-size: contain !important;
+                    transition: opacity 0.05s;
+                }
+
+                #podcastButtons a:hover {
+                    opacity: 0.75;
+                }
+
+                #podcastButtons a.big {
+                    height: 56px;
+                    width: 56px;
+                    background: #303030;
+                    background-image: url("https://reporter.rit.edu/sites/pubDir/podcastres/play.png");
+                    background-size: 200% !important;
+                }
+
+                #podcastButtons a.med {
+                    margin-top: 9px;
+                    height: 38px;
+                    width: 38px;
+                }
+
+                #podcastButtons a.small {
+                    margin-top: 13px;
+                    height: 30px;
+                    width: 30px;
+
+                }
+
+                #podcastButtons a.rew {
+                    background-image: url("https://reporter.rit.edu/sites/pubDir/podcastres/rew.png");
+                }
+
+                #podcastButtons a.fwd {
+                    background-image: url("https://reporter.rit.edu/sites/pubDir/podcastres/fwd.png");
+                }
+
+                #podcastButtons a.spd {
+                    background-image: url("https://reporter.rit.edu/sites/pubDir/podcastres/spd.png");
+                    background-size: 300% !important;
+                    background-position: top left;
+                }
+
+                #podcastButtons a.trs {
+                    background-image: url("https://reporter.rit.edu/sites/pubDir/podcastres/trs.png");
+                }
+
+                #podcastTimeControl {
+                    min-height: 27px;
+                    min-width: 100px;
+                    ccfloat: left;
+                    border-bottom: 4px solid #222;
+                    width: 715px;
+                    position: relative;
+                    cursor: pointer;
+                }
+
+                #podcastTimeControl .left {
+                    float: left;
+                    position: relative;
+                    z-index: 30;
+                    color: #000;
+                    font-family: "Open Sans", sans-serif;
+                    font-weight: 300;
+                    padding: 4px;
+                    margin: 0 !important;
+                    cursor: pointer;
+                }
+
+                #podcastTimeControl .right {
+                    float: right;
+                    position: relative;
+                    z-index: 30;
+                    color: #000;
+                    font-family: "Open Sans", sans-serif;
+                    font-weight: 300;
+                    padding: 4px;
+                    margin: 0 !important;
+                    cursor: pointer;
+                }
+
+                #podcastSlider {
+                    background: rgba(0, 0, 0, 0);
+                    width: 30px;
+                    height: 27px;
+                    float: left;
+                    position: absolute;
+                    left: 0;
+                    z-index: 20;
+                    border-bottom: 4px solid #6EBDE7;
+                }
+
+                #podcastEpisodes {
+                    height: 400px;
+                    width: 315px;
+                    display: block;
+                    float: right;
+                }
+
+                #podcastEpisodesWrapper {
+                    height: 570px;
+                    overflow-y: scroll;
+                }
+
+                #podcastEpisodes .title {
+                    font-size: 16px;
+                    text-transform: uppercase;
+                    color: #303030;
+                    letter-spacing: 1px;
+                }
+
+                #podcastEpisodes a {
+                    border-bottom: 1px solid #ccc;
+                    margin: 0 10px;
+                    padding: 10px 0;
+                    display: block;
+                    text-decoration: none;
+                    color: #33A6E3;
+                    font-family: "Calibri Light", "Source Sans Pro", "Helvetica", sans-serif;
+                }
+
+                #podcastEpisodesWrapper::-webkit-scrollbar {
+                    width: 10px;
+                    height: 10px;
+                }
+
+                #podcastEpisodesWrapper::-webkit-scrollbar-button {
+                    width: 0px;
+                    height: 0px;
+                }
+
+                #podcastEpisodesWrapper::-webkit-scrollbar-thumb {
+                    background: #303030;
+                    border: 0px none #ffffff;
+                    border-radius: 50px;
+                }
+
+                #podcastEpisodesWrapper::-webkit-scrollbar-thumb:hover {
+                    background: #188F6C;
+                }
+
+                #podcastEpisodesWrapper::-webkit-scrollbar-thumb:active {
+                    background: #087F5C;
+                }
+
+                #podcastEpisodesWrapper::-webkit-scrollbar-track {
+                    background: #eee;
+                    border: 0px none #ffffff;
+                    border-radius: 50px;
+                }
+
+                #podcastEpisodesWrapper::-webkit-scrollbar-track:hover {
+                    background: #f2f2f2;
+                }
+
+                #podcastEpisodesWrapper::-webkit-scrollbar-track:active {
+                    background: #ddd;
+                }
+
+                #podcastEpisodesWrapper::-webkit-scrollbar-corner {
+                    background: transparent;
+                }
+
+                #podcastAudio {}
+
+                #podcastTranscript {
+                    border: 0;
+                    width: 715px;
+                    height: 365px;
+                    margin: 10px auto 2px auto;
+                }
+
+                .brk {
+                    clear: both;
+                }
+
+                /* MOBILE STUFF  */
+
+                html.mobile {
+                    background: #fff;
+                }
+
+                .mobile #contentMargin {
+                    margin: 0 !important;
+                }
+
+                .mobile #contentSpacer {
+                    display: none !important;
+                }
+
+                .mobile div.content {
+                    min-height: 64vh;
+                }
+
+                .mobile #contentRegion {
+                    background: #fff;
+                }
+
+                .mobile .footer {
+                    display: none;
+                }
+
+                .mobile .footer-top {
+                    display: none;
+                }
+
+                .mobile #podcastContainer {
+                    height: 95px;
+                    border: 0;
+                }
+
+                .mobile #podcastControls {
+                    padding: 20px 10px 65px 10px;
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    background: #fff;
+                    width: calc(100vw - 20px);
+                    border-top: 1px solid #dadada;
+                    z-index: 5;
+                }
+
+                .mobile #podcastHeader {
+                    position: fixed;
+                    left: 0;
+                    top: 65px;
+                    background: #fff;
+                    width: 100vw;
+                    padding: 10px;
+                    z-index: 5;
+                    border-bottom: 1px solid #dadada;
+                }
+
+                .mobile #podcastTop {
+                    width: calc(100vw - 102px);
+                }
+
+                .mobile #podcastTop>h3 {
+                    font-size: 18px;
+                    max-width: calc(100vw - 135px);
+                    max-height: 53px;
+                    min-height: 28px;
+                }
+
+                .mobile #podcastTop>a {
+                    font-size: 14px;
+                }
+
+                .mobile #podcastTranscript {
+                    position: absolute;
+                    top: 167px;
+                    width: calc(100vw - 4px);
+                    background: #fff;
+                    height: calc(100vh - 339px);
+                    z-index: 1;
+                }
+
+                .mobile img#album {
+                    box-shadow: 0 0 4px #e4e4e4;
+                    margin-left: 8px;
+                }
+
+                .mobile #podcastTimeControl {
+                    min-width: 50px !important;
+                    width: 100%;
+                }
+
+                .mobile #podcastTop>* {
+                    margin-left: 14px;
+                }
+                /* Media Queries */
+                @media screen and (max-width: 800px) {
+                    body, html {
+                        overflow-x: hidden;
+                        background: #fff;
+                    }
+                    .mobile #podcastTop {
+                        width: auto;
+                    }
+                    img#album {
+                        height: 80px;
+                        width: 80px;
+                    }
+                    #mobile-nav {
+                        position: fixed !important;
+                    }
+                }
+            </style>
+
+            <script type="text/javascript">
+                podcasts = [
+                    {
+                        title: "Attention, Boys and Girls! The Gender Ratio",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Documenting History with Urban Exploration",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "A Sticky Dining Situation",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Reporter After Hours",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "The DACA Debacle",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "RIT Rerforming Arts Take Center Stage",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Charting the Cosmos at RIT's CCRG",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Really Makes you Ink",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Potential Committee will Vet RIT Endowment",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Year in Review",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Black History Month",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "North Korea",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "50 Years in Henrietta",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Fighting Food Insecurity with RIT FoodShare",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "The James Webb Space Telescope",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Trash Culture",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Distorter 2018 [clean]",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Distorter 2018 [explicit]",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Consent on Campus",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+                    {
+                        title: "Great Lakes",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+		    {
+                        title: "Voices Heard",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+		    {
+                        title: "Voices Heard Ep 2 - Diamond Powell",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+		    {
+                        title: "Voices Heard Ep 3 - Athena Lemon",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+		    {
+                        title: "Voices Heard Ep 4 - Voices of DormDash",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    },
+		    {
+                        title: "Voices Heard Ep 6 - Voice of David Calvet",
+                        srcMp3: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.mp3",
+                        srcOgg: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.ogg",
+                        transcript: "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep1.html"
+                    }
+                ];
+
+                window.addEventListener("load", function () {
+                    DOM = {
+                        audio: document.getElementById("podcastAudio"),
+                        buttons: {
+                            play: document.getElementById("btnPlay"),
+                            speed: document.getElementById("btnSpeed")
+                        },
+                        timeLeft: document.getElementById("podcastTimeLeft"),
+                        timeRight: document.getElementById("podcastTimeRight"),
+                        timeControl: document.getElementById("podcastTimeControl"),
+                        timeSlider: document.getElementById("podcastSlider"),
+                        transcript: document.getElementById("podcastTranscript"),
+                        podcastTitle: document.getElementById("podcastTitle"),
+                        podcastMP3Source: document.getElementById("podcastMP3Source"),
+                        podcastLabel: document.getElementById("podcastLabel")
+                    }
+                    pod = {
+                        playing: false,
+                        speed: 1.0,
+                    }
+                    var episodeNumStr = getURLParameterByName("ep");
+                    if (!isNaN(episodeNumStr)) { // If IS a number
+                        var episodeNum = parseInt(episodeNumStr);
+                        if (!isNaN(episodeNum))
+                            podcastSetEpisode(episodeNum);
+                    }
+                    setInterval(podUpdateTimeDisplay, 60);
+                    podResponsive();
+                });
+                window.addEventListener("resize", function () {
+                    podResponsive();
+                })
+                mobileMode = false;
+                function podResponsive() {
+                    if (!DOM.transcript.contentDocument)
+                        DOM.transcript.contentDocument = document.getElementById("podcastTranscript");
+                    var winWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);;
+                    if (winWidth <= 810 && !mobileMode) {
+                        document.documentElement.className += " mobile";
+                        DOM.transcript.style.height = (DOM.transcript.contentDocument.body.scrollHeight + 100) + "px";
+                    }
+                    else if (winWidth > 810 && mobileMode) {
+                        document.documentElement.classList.remove("mobile");
+                        DOM.transcript.style.height = "400px";
+                    }
+                }
+                function podPlayPause() {
+                    if (!pod.playing) {
+                        podPlay();
+                    }
+                    else {
+                        podPause();
+                    }
+                }
+                function podPlay() {
+                    DOM.audio.play();
+                    pod.playing = true;
+                    DOM.buttons.play.style.backgroundPositionX = "-100%";
+                }
+                function podPause() {
+                    DOM.audio.pause();
+                    pod.playing = false;
+                    DOM.buttons.play.style.backgroundPositionX = "0";
+                }
+                function podSpeedToggle() {
+                    pod.speed += 0.5;
+                    if (pod.speed > 2.0)
+                        pod.speed = 1.0;
+                    DOM.audio.playbackRate = pod.speed;
+                    if (pod.speed == 1.0)
+                        DOM.buttons.speed.style.backgroundPositionX = "0";
+                    else if (pod.speed == 1.5)
+                        DOM.buttons.speed.style.backgroundPositionX = "50%";
+                    else
+                        DOM.buttons.speed.style.backgroundPositionX = "100%";
+                }
+                function podRewind() {
+                    DOM.audio.currentTime -= 10.6;
+                    if (DOM.audio.currentTime < 0)
+                        DOM.audio.currentTime = 0;
+                    DOM.audio.play();
+                }
+                function podForward() {
+                    var time = DOM.audio.currentTime + 29.4;
+                    if (time > DOM.audio.duration)
+                        time = DOM.audio.duration - 1;
+                    DOM.audio.currentTime = time;
+                    DOM.audio.play();
+                }
+                function podSeek(e, elm) {
+                    var seekPos = e.pageX - DOM.timeControl.offsetLeft;
+                    var percentDone = seekPos / DOM.timeControl.offsetWidth;
+                    DOM.audio.currentTime = DOM.audio.duration * percentDone;
+                }
+                function podUpdateTimeDisplay() {
+                    var mins = "" + Math.floor(DOM.audio.currentTime / 60);
+                    var secs = "" + Math.floor(DOM.audio.currentTime % 60);
+                    if (secs.length < 2)
+                        secs = "0" + secs;
+                    var val = (mins + ":" + secs);
+                    if (isNaN(DOM.audio.duration / 60))
+                        val = "Err: Audio not loaded";
+                    DOM.timeLeft.innerHTML = val;
+
+                    mins = "" + Math.floor(DOM.audio.duration / 60);
+                    secs = "" + Math.floor(DOM.audio.duration % 60);
+                    val = (mins + ":" + secs);
+                    if (mins == "NaN" || secs == "NaN")
+                        val = "--:--";
+                    console.log(mins + "-" + secs + " - " + val);
+                    DOM.timeRight.innerHTML = val;
+
+                    var percentDone = DOM.audio.currentTime / DOM.audio.duration;
+                    var width = DOM.timeControl.offsetWidth;
+                    DOM.timeSlider.style.width = Math.floor(width * percentDone) + "px";
+                }
+                currentEpisodeNum = podcasts.length; // This is human numbers. Starts at 1
+                function podcastSetEpisode(num, force) {
+                    if (!num)
+                        return;
+                    if (num < 0 || num > podcasts.length)
+                        return;
+                    if (num != currentEpisodeNum || force === true) {
+                        DOM.podcastTitle.innerHTML = podcasts[num - 1].title;
+                        DOM.podcastMP3Source.setAttribute("src", "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep" + (num) + ".mp3");
+                        DOM.transcript.setAttribute("src", "https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep" + (num) + ".html");
+                        DOM.podcastLabel.innerHTML = "szn 1 ep " + num;
+                        DOM.audio.load();
+                        DOM.audio.playbackRate = pod.speed;
+                        currentEpisodeNum = num;
+                    }
+                }
+
+                function getURLParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                        results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                }
+                window.addEventListener("load", function () {
+                    podcastSetEpisode(currentEpisodeNum, true);
+                });
+            </script>
+
+            <div id="podcastContainer">
+                <div id="podcastHeader">
+                    <img id="album" src="/sites/pubDir/podcastres/album.png" height="90px" width="90px" />
+                    <div id="podcastTop">
+                        <h3 id="podcastLabel" class="label desktop_only">szn 0 ep 0</h3>
+                        <h3 id="podcastTitle" class="title">Loading Title</h3>
+
+                        <a class="podcast" target="_blank" href="https://itunes.apple.com/us/podcast/reporter-pods/id1299563321">iTunes</a>
+                        <a class="podcast" target="_blank" href="https://open.spotify.com/show/6lPSwoS9FMef3v0QbTivW3" style="margin-left: 0">Spotify</a>
+                    </div>
+                    <br class="brk" />
+                </div>
+                <div id="podcastControls">
+                    <div id="podcastButtons">
+                        <a onclick="podSpeedToggle(); return false;" id="btnSpeed" class="small spd" href="#"></a>
+                        <a onclick="podRewind(); return false;" class="med rew" href="#"></a>
+                        <a onclick="podPlayPause(); return false;" id="btnPlay" class="big" href="#"></a>
+                        <a onclick="podForward(); return false;" class="med fwd" href="#"></a>
+                        <a onclick="return false;" class="small trs" style="opacity: 0.4" href="#"></a>
+                    </div>
+                    <br class="brk" style="display: none" />
+                    <div id="podcastTimeControl" onmousedown="podSeek(event, this)" onmouseup="podSeek(event, this)">
+                        <div id="podcastSlider"></div>
+                        <p id="podcastTimeLeft" class="left">0:00</p>
+                        <p id="podcastTimeRight" class="right">15:00</p>
+                    </div>
+                </div>
+                <br class="brk" />
+                <audio id="podcastAudio" preload="preload">
+                    <source id="podcastMP3Source" src="https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep20.mp3" type="audio/mpeg" /> Your browser does not support HTML5 audio
+                </audio>
+                <iframe id="podcastTranscript" src="https://reporter.rit.edu/sites/pubDir/podcastres/podcasts/ep20.html" onload="podResponsive()"></iframe>
+            </div>
+            <div id="podcastEpisodes">
+                <div id="podcastEpisodesWrapper">
+                    <h3 class="title">More Episodes</h3>
+		    <a href="javascript:;" onclick="podcastSetEpisode(25)">RIT Reporter Pod #26 - Voices Heard - David Calvet</a> <!--No idea what happened to episode 25.-->
+                    <a href="javascript:;" onclick="podcastSetEpisode(24)">RIT Reporter Pod #24 - Voices Heard - DormDash</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(23)">RIT Reporter Pod #23 - Voices Heard - Athena Lemon</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(22)">RIT Reporter Pod #22 - Voices Heard - Diamond Powell</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(21)">RIT Reporter Pod #21 - Voices Heard</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(20)">RIT Reporter Pod #20 - Great Lakes</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(19)">RIT Reporter Pod #19 - Consent on Campus</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(18)">RIT Reporter Pod #18 - Distorter 2018 [explicit]</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(17)">RIT Reporter Pod #17 - Distorter 2018 [clean]</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(16)">RIT Reporter Pod #16 - Trash Culture</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(15)">RIT Reporter Pod #15 - The James Webb Space Telescope</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(14)">RIT Reporter Pod #14 - Fighting Food Insecurity with RIT FoodShare</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(13)">RIT Reporter Pod #13 - 50 Years in Henrietta</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(12)">RIT Reporter Pod #12 - North Korea</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(11)">RIT Reporter Pod #11 - Black History Month</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(10)">RIT Reporter Pod #10 - Year in Review</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(9)">RIT Reporter Pod #9 - Potential Committee will Vet RIT Endowment</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(8)">RIT Reporter Pod #8 - Really Makes you Ink</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(7)">RIT Reporter Pod #7 - Charting the Cosmos at RIT's CCRG</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(6)">RIT Reporter Pod #6 - RIT Performing Arts Take Center Stage</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(5)">RIT Reporter Pod #5 - The DACA Debacle</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(4)">RIT Reporter Pod #4 - Reporter After Hours</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(3)">RIT Reporter Pod #3 - A Sticky Dining Situation</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(2)">RIT Reporter Pod #2 - Documenting History with Urban Exploration</a>
+                    <a href="javascript:;" onclick="podcastSetEpisode(1)">RIT Reporter Pod #1 - Attention, Boys and Girls! The Gender Ratio</a>
+                </div>
+            </div>
+            <div class="clr" />
+
+
+
+            <!-- End podcast code -->
+        </div>
+    </div>
+</body>
+</html>

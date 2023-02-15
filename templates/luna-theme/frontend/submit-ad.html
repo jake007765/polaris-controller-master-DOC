@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+    <title>Reporter</title>
+    {% include 'luna-theme/segments/head-includes.html' %}
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400&amp;subset=latin-ext" rel="stylesheet">
+    {% include 'luna-theme/segments/analytics.html' %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript">
+        globalAdImage = false;
+        function updatePreviewFields() {
+            formFields = {
+                email: document.getElementById("formEmail"),
+                link: document.getElementById("formLink"),
+                img: document.getElementById("formImg"),
+                headline: document.getElementById("formHeadline"),
+                description: document.getElementById("formDescription"),
+                altText: document.getElementById("formAltText"),
+            }
+            // document.getElementById("reklamLink").setAttribute("href", formFields.link);
+            // document.getElementById("reklamImg").setAttribute("src", formFields.img);
+            document.getElementById("reklamHeadline").innerHTML = formFields.headline.value.trim().length != 0 ? formFields.headline.value : formFields.headline.placeholder;
+            document.getElementById("reklamDescription").innerHTML = formFields.description.value.trim().length != 0 ? formFields.description.value : formFields.description.placeholder;
+            document.getElementById("reklamImg").alt = formFields.altText.value.trim().length != 0 ? formFields.altText.value : formFields.altText.placeholder;
+        }
+        function fileUpdated(e) {
+            var reklamImg = document.getElementById("reklamImg");
+
+            var file = e.target.files[0];
+            var fr = new FileReader();
+            fr.readAsDataURL(file);
+            fr.onload = readerEvent => {
+                var content = readerEvent.target.result;
+                reklamImg.setAttribute("src", content);
+                globalAdImage = content;
+            }
+            console.log(file);
+        }
+        function submitAd() {
+            formFields = {
+                email: document.getElementById("formEmail"),
+                link: document.getElementById("formLink"),
+                img: document.getElementById("formImg"),
+                headline: document.getElementById("formHeadline"),
+                description: document.getElementById("formDescription"),
+                altText: document.getElementById("formAltText"),
+            }
+            var apiUrl = "/public-api/ad-request";
+            var req = new XMLHttpRequest();
+            req.open("POST", apiUrl);
+            req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            req.send(JSON.stringify(
+                { 
+                    "headline": formFields.headline.value, 
+                    "description": formFields.description.value, 
+                    "imageDataUri": globalAdImage, 
+                    "imageAltText": formFields.altText.value, 
+                    "forwardLink": formFields.link.value, 
+                    "sponsorEmail": formFields.email.value, 
+                }
+            ));
+        }
+    </script>
+</head>
+<body>
+    {% include 'luna-theme/segments/header.html' %}
+
+    <div class="header-mast container">
+        <div class="header-mast">
+            <h1>Submit an Online Ad to Reporter</h1>
+        </div>
+    </div>
+    <div class="contentWrapper">
+        <article>
+            <h2 class="mobile_only">This form is not supported on mobile devices. Please switch to a computer.</h2>
+
+            <h2>Contact Information</h2>
+            <p>Please provide your contact information and also contact our advertisement manager at <a href="mailto:rptadsmgr@rit.edu">rptadsmgr@rit.edu</a>.</p>
+            <p>Email: <input id="formEmail" type="text" placeholder="person@site.com" /></p>
+            
+            <h2>Advertisement Details</h2>
+            <p>Headline: <input id="formHeadline" type="text" placeholder="Example Ad Headline" onkeyup="updatePreviewFields()" /></p>
+            <p>Description: <input id="formDescription" type="text" placeholder="Description for your advertisement." onkeyup="updatePreviewFields()" /></p>
+            <p>Image: <input id="formImg" type="file" placeholder="File here.png" accept="image/png, image/jpeg" onchange="fileUpdated(event)" /></p>
+            <p>Image alt text: <input id="formAltText" type="text" placeholder="Image summary for screen readers; also used if the image fails to load." onkeyup="updatePreviewFields()" /> (<a href="https://supercooldesign.co.uk/blog/how-to-write-good-alt-text">Used for accessibility</a>)</p>
+            <p>Link to your website: <input id="formLink" type="text" placeholder="www.example.com" onkeyup="updatePreviewFields()" /></p>
+            
+            <h2>Advertisement Preview</h2>
+            <p>This is how your ad will be displayed on the website. Please make sure that the text in the provided image is legible at a normal zoom setting.</p>
+        </article>
+    </div>
+    <div class="content">
+        <div class="contentBox articleGrid4">
+            <br />
+
+
+            <div class="articleRow4">
+            <!-- <a href="#" class="articleThumb">
+                <div class="border-container desktop_only">
+                    <div class="border"></div>
+                </div>
+                <div class="media">
+                    <img src="//:0" />
+                </div>
+                <div class="meta">
+                    <div class="section news">News</div>
+                    <div class="time"></div>
+                </div>
+                <span>
+                    <span class="title">Headline of an Example Article</span><br />
+                    <span class="description">This is the description of an example article to fill up space for the preview.</span>
+                </span>
+            </a>
+
+            <a href="#" class="articleThumb">
+                <div class="border-container desktop_only">
+                    <div class="border"></div>
+                </div>
+                <div class="media">
+                    <img src="//:0" />
+                </div>
+                <div class="meta">
+                    <div class="section news">News</div>
+                    <div class="time"></div>
+                </div>
+                <span>
+                    <span class="title">Some Other Example Headline!</span><br />
+                    <span class="description">This description is only here to take up space so that the ad preview fits in.</span>
+                </span>
+            </a> -->
+
+
+            <a id="reklamLink" href="#" class="articleThumb">
+                <div class="border-container desktop_only">
+                    <div class="border"></div>
+                </div>
+                <div class="media">
+                    <img id="reklamImg" src="//:0" />
+                </div>
+                <div class="meta">
+                    <div class="section">ADVERTISEMENT</div>
+                    <div class="time"></div>
+                </div>
+                <span>
+                    <span id="reklamHeadline" class="title">Advertisement Preview</span><br />
+                    <span id="reklamDescription" class="description">Description of your ad.</span>
+                </span>
+            </a>
+            </div>
+            <div class="articleRow4">
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="contentWrapper">
+        <article>
+            <h2>Submit Advertisement</h2>
+            <p>Once you're satisfied with how your ad looks, hit submit and contact our ad manager at <a href="mailto:rptadsmgr@rit.edu">rptadsmgr@rit.edu</a>.</p>
+            <p><a class="button" href="javascript:void" onclick="submitAd()">Submit</a></p>
+
+        </article>
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    {% include 'luna-theme/segments/footer.html' %}
+</body>
+</html>

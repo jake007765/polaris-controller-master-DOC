@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <title>{{ title }}</title>
+
+    {% include 'luna-theme/segments/analytics.html' %}
+    <!-- Search Engine -->
+    <meta name="image" content="{{ slideshow[0]['url'] }}">
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="{{ title }}">
+    <meta itemprop="image" content="{{ slideshow[0]['url'] }}">
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name="og:title" content="{{ title }}">
+    <meta name="og:image" content="{{ slideshow[0]['url'] }}">
+    <meta name="og:url" content="{{ articleLink }}">
+    <meta name="og:site_name" content="Reporter">
+    <meta name="og:type" content="article">
+    <!-- Open Graph - Article -->
+    <meta name="article:author" content="{{ author['fullname'] }}">
+
+    {% include 'luna-theme/segments/head-includes.html' %}
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400&amp;subset=latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/static/res/js/lib/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/res/js/lib/slick/slick-theme.css"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+        {% include 'luna-theme/segments/header.html' %}
+
+        <br style="clear: both" />
+
+
+    <div class="contentWrapper">
+        <article>
+            <h1>{{ title }}</h1>
+            <hr class="slice" />
+            <address class="byline">
+                <!-- <img src="/author.jpg" alt="Profile picture of USER" /> -->
+                <p><span>by <a href="{{ author['url'] }}">{{ author['fullname'] }}</a></span> | <span>published {{ date }}</span>
+            </address>
+            <div id="mainSlideshow" class="articleMedia slideshow">
+                {% for slide in slideshow %}
+                <div>
+                    <img src="{{ slide['url'] }}" class="mainimg" />
+                    <div class="subtext">{{ slide['caption'] }}</div>
+                </div>
+                {% endfor %}
+            </div>
+
+            {{ articleContent|safe }}
+
+        </article>
+    </div>
+
+
+    {% include 'luna-theme/segments/footer.html' %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/res/js/lib/slick/slick.min.js"></script>
+    <script>
+        $('#mainSlideshow').slick({
+            centerPadding: '60px',
+            adaptiveHeight: true,
+            centerMode: false,
+            dots: true,
+            responsive: [
+              {
+                breakpoint: 768,
+                settings: {
+                  arrows: false,
+                  centerPadding: '40px',
+                  centerMode: true
+                }
+              },
+              {
+                breakpoint: 480,
+                settings: {
+                  arrows: false,
+                  centerPadding: '40px',
+                  centerMode: true
+                }
+              }
+            ]
+          });
+    </script>
+</body>
+</html>

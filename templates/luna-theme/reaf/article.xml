@@ -1,0 +1,42 @@
+
+
+
+<reaf:article>
+
+    <meta>
+        <headline>Reporter Creates New Article Format</headline>
+        <attributions type="author">
+            <staff ref="exo3392" />
+            <staff ref="mxc4598" />
+            <nonStaff display="Some Name" />
+        </attributions>
+        <attributions type="photo">
+            <staff ref="exo3392" />
+            <staff ref="mxc4598" />
+            <nonStaff display="Some Name" />
+        </attributions>
+        <attributions type="illustration">
+            <staff ref="exo3392" />
+            <staff ref="mxc4598" />
+            <nonStaff display="Some Name" />
+        </attributions>
+        <attributions type="design">
+            <staff ref="exo3392" />
+            <staff ref="mxc4598" />
+            <nonStaff display="Some Name" />
+        </attributions>
+        <published timestamp="089213647" />
+        <podcast ref="..." />
+    </meta>
+
+    <content>
+        <paragraph>
+            Some text goes here. Wow what an interesting article. <photo justify="right" src="..." alt="" />
+        </paragraph>
+        <paragraph>
+            Some text goes here. Wow what an interesting article. <illustration justify="right" src="..." alt="" />
+        </paragraph>
+        <youtube src="..." alt="" />
+    </content>
+
+</reaf:article>

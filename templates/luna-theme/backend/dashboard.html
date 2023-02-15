@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ article['title']|safe }} | Reporter Articles</title>
+  <link rel="stylesheet" href="/static/admin/res/css/main.css">
+  <link rel="stylesheet" href="/static/admin/res/css/master-nav.css">
+  <link rel="stylesheet" href="/static/admin/res/css/toolbar.css">
+  <link rel="stylesheet" href="/static/admin/res/css/article.css">
+</head>
+<body>
+  <div class="master-nav-placeholder"></div>
+  <div class="master-nav-wrapper">
+    <div class="master-nav">
+      <div class="left">
+        <button>Menuuuu</button>
+      </div>
+      <div class="center">
+        <p>{{ article['title']|safe }} | Reporter Articles</p>
+      </div>
+      <div class="right">
+        <button class="notifications"/><button class="profile"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="master-sidebar-wrapper">
+    <div class="master-sidebar">
+      <div>
+        <button>MENU</button>
+      </div>
+      <h2>Reporter</h2>
+      <div class="portal-links">
+        <a class="portal-link"><img /> Articles</a>
+        <a class="portal-link"><img /> Podcasts</a>
+        <a class="portal-link"><img /> Ads</a>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="toolbar-placeholder"></div>
+  <div class="toolbar-wrapper">
+    <div class="toolbar">
+      <button class="special">Commit</button>
+      <button>Discard Changes</button>
+      <p>Not saved</p>
+    </div>
+  </div>
+
+  <div class="contentWrapper">
+    <article>
+        <h1>{{ article['title']|safe }}</h1>
+        <address class="byline">
+            <!-- <img src="/author.jpg" alt="Profile picture of USER" /> -->
+            <p><span>by <a href="https://reporter.rit.edu:8443/users/crk4791">Cayla Keiser</a></span> | <span>published Nov. 4th, 2019</span>
+        </address>
+            
+            <figure class="image">
+                <img src="https://reporter.rit.edu:8443/sites/pubDir/slideShow/10-19/1146-2446-2123393897.png" class="mainimg" />
+                <figcaption class="subtext">illustration by Maggie Dybas</figcaption>
+            </figure>
+
+            {{ article['body']|safe }}
+    </article>
+
+    <script src="/static/admin/res/plugins/ckeditor5/build/ckeditor.js"></script>
+	<script>
+		const watchdog = new CKSource.Watchdog();
+		
+		window.watchdog = watchdog;
+		
+		watchdog.setCreator( ( element, config ) => {
+			return CKSource.Editor
+				.create( element, config )
+				.then( editor => {
+					
+					
+					
+		
+					
+					
+					
+		
+					return editor;
+				} )
+		} );
+		
+		watchdog.setDestructor( editor => {
+			
+			
+		
+			return editor.destroy();
+		} );
+		
+		watchdog.on( 'error', handleError );
+		
+		watchdog
+			.create( document.querySelector( 'article' ), {
+				
+				toolbar: {
+					items: [
+						'bold',
+						'italic',
+						'link',
+						'superscript',
+						'subscript',
+						'strikethrough',
+						'underline',
+						'removeFormat'
+					]
+				},
+				language: 'en',
+				blockToolbar: [
+					'heading',
+					'undo',
+					'redo',
+					'blockQuote',
+					'imageUpload',
+					'numberedList',
+					'bulletedList',
+					'mediaEmbed',
+					'insertTable',
+					'horizontalLine'
+				],
+				image: {
+					toolbar: [
+						'imageTextAlternative',
+						'imageStyle:full',
+						'imageStyle:side'
+					]
+				},
+				table: {
+					contentToolbar: [
+						'tableColumn',
+						'tableRow',
+						'mergeTableCells'
+					]
+                },
+                heading: {
+                    options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h2', title: 'Heading', class: 'ck-heading_heading2' },
+                        { model: 'heading2', view: 'h3', title: 'Subheading', class: 'ck-heading_heading3' },
+                        { model: 'blockquote', view: 'blockquote', title: 'Pullquote', class: '' },
+                        { model: 'unorderedList', view: 'ul', title: 'Bullet List', class: '' }
+                    ]
+                },
+				licenseKey: '',
+				
+			} )
+			.catch( handleError );
+		
+		function handleError( error ) {
+			console.error( 'Oops, something went wrong!' );
+			console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+			console.warn( 'Build id: oon5qmg7fw5a-goq06dr99a16' );
+			console.error( error );
+		}
+		
+	</script>
+
+</div>
+</body>
+</html>

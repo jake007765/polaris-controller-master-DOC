@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+    <title>Reporter</title>
+    {% include 'luna-theme/segments/head-includes.html' %}
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400&amp;subset=latin-ext" rel="stylesheet">
+    {% include 'luna-theme/segments/analytics.html' %}
+
+    <!-- Distorter prank
+    <script type="text/javascript">
+        function distorter() {
+            var x = document.body.getElementsByTagName("*");
+            for (i = 0; i < x.length; i++) {
+                var y = Math.floor((Math.random()*1)+1);
+                x[i].style.transform="rotate("+y+"deg)"
+            }
+        };
+    </script> -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body onload="distorter()">
+    {% include 'luna-theme/segments/header.html' %}
+
+    <div class="content">
+        <div class="coverBox ribbon desktop_only">
+            <div class="contentBox">
+                <div class="left">
+                    <a href="{{urlparse(featuredArticle['articleLink']).path}}">
+                        <img src="{{featuredArticle['imgLink']}}" width="80px"/>
+                    </a>
+                </div>
+                <div class="right">
+                    <a href="{{urlparse(featuredArticle['articleLink']).path}}">
+                        <p class="section {{featuredArticle['section_name'].lower()}}">{{featuredArticle['section_name']}}</p>
+                        <h1>{{featuredArticle['title']}}</h1>
+                        <p class="description">{{featuredArticle['body']}}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="contentBox articleGrid4">
+            <br />
+            <br />
+            <br />
+
+            <div class="articleRow4 mobile_only">
+                <a href="{{urlparse(featuredArticle['articleLink']).path}}" class="articleThumb">
+                    <div class="border-container desktop_only">
+                        <div class="border"></div>
+                    </div>
+                    <div class="media">
+                        <img src="{{featuredArticle['imgLink']}}" />
+                    </div>
+                    <div class="meta">
+                        <div class="section {{featuredArticle['section_name'].lower()}}">{{featuredArticle['section_name']}}</div>
+                        <div class="time"></div>
+                    </div>
+                    <span>
+                        <span class="title">{{featuredArticle['title']}}</span><br />
+                        <span class="description">{{featuredArticle['body']}}</span>
+                    </span>
+                </a>
+            </div>
+
+
+            <div class="articleRow4">
+            {% for article in articles %}
+            <a href="{{urlparse(article['articleLink']).path}}" class="articleThumb">
+                <div class="border-container desktop_only">
+                    <div class="border"></div>
+                </div>
+                <div class="media">
+                    <img src="{{article['imgLink']}}" />
+                </div>
+                <div class="meta">
+                    <div class="section {{article['section_name'].lower()}}">{{article['section_name']}}</div>
+                    <div class="time"></div>
+                </div>
+                <span>
+                    <span class="title">{{article['title']}}</span><br />
+                    <span class="description">{{article['body']}}</span>
+                </span>
+            </a>
+            <!--Reklam baslat-->
+            {% if (advertisementOn and loop.index == 2) %}
+            <a id="reklamLink" href="#" class="articleThumb">
+                <script type="text/javascript">
+                    if (window.addEventListener) {
+                        window.addEventListener('load', pickReklam)
+                    } else {
+                        window.attachEvent('onload', pickReklam)
+                    }
+                    function pickReklam() {
+                        var reklams = [
+                            {
+                                linkUrl: "https://reporter.rit.edu/advertise/",
+                                imgSrc: "https://i.imgur.com/ZmLprBm.png",
+                                headline: "Want to Purchase an Ad?",
+                                description: "Click to see details of our advertising plans!"
+                            },
+                            // !!!! STOP !!!!
+                            // If you're thinking about adding an Ad here,
+                            // Don't.
+                            // I will find you.
+                        ]
+                        var index = Math.floor(Math.random() * reklams.length);
+                        document.getElementById("reklamLink").setAttribute("href", reklams[index].linkUrl);
+                        document.getElementById("reklamImg").setAttribute("src", reklams[index].imgSrc);
+                        document.getElementById("reklamHeadline").innerHTML = reklams[index].headline;
+                        document.getElementById("reklamDescription").innerHTML = reklams[index].description;
+                    }
+                </script>
+                <!-- <div class="media reklam">
+                    <img id="reklam0" style="display: none;" src="https://i.imgur.com/ZmLprBm.png" width="225px" />
+                </div>
+                <div class="meta">
+                    <div class="section reklam">Advertisement</div>
+                </div> -->
+
+
+                <div class="border-container desktop_only">
+                    <div class="border"></div>
+                </div>
+                <div class="media">
+                    <img id="reklamImg" src="//:0" />
+                </div>
+                <div class="meta">
+                    <div class="section">ADVERTISEMENT</div>
+                    <div class="time"></div>
+                </div>
+                <span>
+                    <span id="reklamHeadline" class="title">Loading...</span><br />
+                    <span id="reklamDescription" class="description">Loading description</span>
+                </span>
+            </a>
+            {% endif %}
+            <!--Reklam bitir-->
+            {% if ((not advertisementOn and ((loop.index % 3) == 0)) or (advertisementOn and (((loop.index + 1) % 3) == 0 or loop.index == 0) ) ) %}
+            </div>
+            <div class="articleRow4">
+            {% endif %}
+            {% endfor %}
+            </div>
+
+
+        </div>
+        <div class="center">
+            <div class="pageSwitcherWrapper">
+                <a class="pageSwitcher selected" href="/">
+                    1
+                </a>
+                <a class="pageSwitcher" href="/?page=2">
+                    2
+                </a>
+                <a class="pageSwitcher" href="/?page=3">
+                    3
+                </a>
+                <a class="pageSwitcher" href="/?page=4">
+                    4
+                </a>
+                <br class="clr" />
+            </div>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    {% include 'luna-theme/segments/footer.html' %}
+</body>
+</html>

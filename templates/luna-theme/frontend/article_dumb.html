@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <title>Reporter</title>
+
+    {% include 'luna-theme/segments/analytics.html' %}
+    <!-- Search Engine -->
+    <meta name="image" content="{{ imageLink }}">
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="{{ title }}">
+    <meta itemprop="image" content="{{ imageLink }}">
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name="og:title" content="{{ title }}">
+    <meta name="og:image" content="{{ imageLink }}">
+    <meta name="og:url" content="{{ articleLink }}">
+    <meta name="og:site_name" content="Reporter">
+    <meta name="og:type" content="article">
+    <!-- Open Graph - Article -->
+    <meta name="article:author" content="{{ author['fullname'] }}">
+
+    {% include 'luna-theme/segments/head-includes.html' %}
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400&amp;subset=latin-ext" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+        {% include 'luna-theme/segments/header.html' %}
+
+
+    <div class="contentWrapper">
+        <article>
+
+            {% if (imageLink|length > 6) %}
+            <div class="articleMedia right">
+                <img src="{{ imageLink }}" class="mainimg" />
+                <div class="subtext"></div>
+            </div>
+            {% endif %}
+            <h1>{{ title }}</h1>
+            <hr class="slice" />
+            <address class="byline">
+                <!-- <img src="/author.jpg" alt="Profile picture of USER" /> -->
+                <p><span>by <a href="{{ author['url'] }}">{{ author['fullname'] }}</a></span> | <span>published {{ date }}</span>
+            </address>
+
+            {{ articleContent|safe }}
+
+        </article>
+    </div>
+
+
+    {% include 'luna-theme/segments/footer.html' %}
+</body>
+</html>
