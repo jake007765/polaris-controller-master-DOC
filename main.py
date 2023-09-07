@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+#these imports are not currently used
 from jinja2 import Environment, FileSystemLoader
 from urllib.parse import urlparse, unquote, quote
 import requests
@@ -12,6 +13,7 @@ import secret
 app = Flask(__name__)
 parsedArticles = []
 
+# Front page loads 27 articles, plus one randomly selected at the top
 @app.route("/")
 @app.route("/frontpage/")
 def index():
@@ -20,6 +22,7 @@ def index():
     if not page:
         page = 1
     if page == 1:
+        # find where loadArticles is defined
         loadArticles(0, 27)
         rand = random.randint(0, 4)
         while parsedArticles[rand]['title'].startswith('SG'):
