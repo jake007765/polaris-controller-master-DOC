@@ -72,6 +72,7 @@ def article(article_path):
 
 @app.route("/sports/")
 def redirect_sports():
+    '''If the user tries to go to the non-existent sports section, they get redirected to wellness content instead.'''
     return redirect("https://reporter.rit.edu/wellness/", code=301)
     return redirect(request.url.replace("sports", "wellness", 1), code=301)
 
@@ -85,6 +86,8 @@ def redirect_sports():
 @app.route("/op-ed/")
 @app.route("/distorter/")
 def section():
+    '''Loads the section pages for each category, and 24 articles are listed 
+    on each page, unless there's fewer than that'''
     page = request.args.get('page')
     if not page:
         page = 1
@@ -93,6 +96,7 @@ def section():
     print("COMPONENTS: ")
     print(components)
     title = components[3]
+    #confused where this comes from
     if title is None:
         title = "Articles"
     if title == "sports":
@@ -119,6 +123,7 @@ def section():
 
 @app.route("/search/<query>")
 def page_search(query):
+    #Possible this is the search function 
     global parsedArticles
     page = request.args.get('page')
     if not page:
