@@ -17,6 +17,8 @@ parsedArticles = []
 @app.route("/")
 @app.route("/frontpage/")
 def index():
+    '''This function loads the first page of the Reporter website. 27 articles are 
+    loaded as the default. One random article is selected to be featured at the top of this page.'''
     global parsedArticles
     page = request.args.get('page')
     if not page:
@@ -25,6 +27,7 @@ def index():
         # find where loadArticles is defined
         loadArticles(0, 27)
         rand = random.randint(0, 4)
+        #what does this do
         while parsedArticles[rand]['title'].startswith('SG'):
             rand = random.randint(0, 4)
         featuredArticle = parsedArticles.pop(rand)
@@ -44,10 +47,14 @@ def index():
 @app.route("/tech/<article_path>")
 @app.route("/op-ed/<article_path>")
 @app.route("/distorter/<article_path>")
+#is article_path a necessary argument? 
 def article(article_path):
+    '''This function loads a specific article and formats it'''
     articleContent = getArticleContent(request.url)
     print(articleContent)
+    #what does it mean if the article is a slideshow
     if 'slideshow' in articleContent and len(articleContent['slideshow']) > 0:
+        #find render_template
         return render_template("luna-theme/frontend/article_slideshow.html",
         articleContent = renderArticleToHTML(articleContent),
         title = articleContent['title'],
