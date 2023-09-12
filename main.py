@@ -135,20 +135,23 @@ def page_search(query):
 
 @app.route("/podcast/")
 def page_podcast():
+    '''Loads the podcast page with the Luna theme'''
     return render_template("luna-theme/frontend/podcast.html")
 
 @app.route("/people/")
 def page_people():
+    '''Loads the people page with the Luna theme'''
     return render_template("luna-theme/frontend/people.html")
-
 
 @app.route("/office-hours/")
 def page_office_hours():
+    '''Loads the office hours page with the Luna theme'''
+    #To-Do: office hours on website are not up to date
     return render_template("luna-theme/frontend/office-hours.html")
-
 
 @app.route("/join-us/")
 def page_join_us():
+    '''Loads the join us page with the Luna theme'''
     return render_template("luna-theme/frontend/join-us.html")
 
 
