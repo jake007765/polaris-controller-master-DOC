@@ -154,16 +154,15 @@ def page_join_us():
     '''Loads the join us page with the Luna theme'''
     return render_template("luna-theme/frontend/join-us.html")
 
-
 @app.route("/about/")
 def page_about():
+    '''Loads the about page with the Luna theme'''
     return render_template("luna-theme/frontend/about.html")
-
 
 @app.route("/magazine-locations/")
 def page_locations():
+    '''Loads the map of magazine stands as a page with Luna theme'''
     return render_template("luna-theme/frontend/magazine-locations.html")
-
 
 @app.route("/advertise/") # Preferred
 @app.route("/advertise-reporter/") # Backwards compatibility
