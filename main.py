@@ -133,6 +133,8 @@ def page_search(query):
     # return searchArticles
     return render_template("luna-theme/frontend/article-feed.html", pageNumber=int(page), pageTitle="Search", pageHeading="Results for '" + query + "'", articles=searchArticles, numberOfArticles=numberOfArticles, urlparse=urlparse, sectionPath="/search/" + query)
 
+#Food for thought: can we change these functions to be adapted to different themes? 
+#If a web designer in the future wants to change it
 @app.route("/podcast/")
 def page_podcast():
     '''Loads the podcast page with the Luna theme'''
@@ -167,6 +169,9 @@ def page_locations():
 @app.route("/advertise/") # Preferred
 @app.route("/advertise-reporter/") # Backwards compatibility
 def page_advertise():
+    '''Loads the advertisement page with the Luna theme'''
+    #The data on this page needs to be update 
+    #Possibly add a form for people to submit an advertising request 
     return render_template("luna-theme/frontend/advertise.html")
 
 @app.route("/submit-ad/")
