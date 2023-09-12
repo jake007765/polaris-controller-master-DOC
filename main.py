@@ -188,6 +188,7 @@ def page_tipline():
 
 @app.route("/beta-user/<user_id>")
 def page_user(user_id):
+    '''Loads a user's page'''
     data = getUserData(user_id)
     profile_pic_url = "https://reporter.rit.edu/sites/pubDir/" + data['uri'][9:]
     return render_template("luna-theme/frontend/user.html", mail=data['mail'], fullname=data['field_fullname_value'], profile_picture=profile_pic_url)
@@ -199,6 +200,9 @@ def page_march():
     return render_template("luna-theme/frontend/temporary/march.html")
 
 def getNodeIDFromUrl(url, recurse = True):
+    '''Establishes a connection to the secret MySQL database, creates a cursor object 
+    to execute queries to the database, the source column is selected and stored as a
+    dictionary, and then returns the integer value of the source key.'''
     connection = pymysql.connect(
         host =        secret.MYSQL_SERVER_ADDRESS,
         port =        secret.MYSQL_SERVER_PORT,
@@ -222,6 +226,7 @@ def getNodeIDFromUrl(url, recurse = True):
     print(data)
     return int(data['source'][5:])
 
+    #should this be moved somewhere else since it's not being accessed? 
     global parsedArticles
     print("*************Parsed articles globl: ")
     print(parsedArticles)
