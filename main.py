@@ -171,16 +171,19 @@ def page_locations():
 def page_advertise():
     '''Loads the advertisement page with the Luna theme'''
     #The data on this page needs to be update 
-    #Possibly add a form for people to submit an advertising request 
+    #Possibly add a form for people to submit an advertising request within this page
     return render_template("luna-theme/frontend/advertise.html")
 
 @app.route("/submit-ad/")
 def page_submit_ad():
+    #This page does not work, 404 error
     return render_template("luna-theme/frontend/submit-ad.html")
 
 @app.route("/tipline/") # Preferred
 @app.route("/tipline/index.php/851887/") # Backwards compatibility
 def page_tipline():
+    '''Loads the anonymous tipline page with the Luna theme'''
+    #To-Do: Tor is borked
     return render_template("luna-theme/frontend/tipline.html")
 
 @app.route("/beta-user/<user_id>")
@@ -191,6 +194,8 @@ def page_user(user_id):
 
 @app.route("/march2022/")
 def page_march():
+    '''Loads the March 2022 magazine pdf (Environmental Issue)'''
+    #Should we do this for every issue? 
     return render_template("luna-theme/frontend/temporary/march.html")
 
 def getNodeIDFromUrl(url, recurse = True):
